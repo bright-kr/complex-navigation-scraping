@@ -1,6 +1,6 @@
 # 복잡한 내비게이션이 있는 웹사이트 スクレイピング
 
-[![Promo](https://github.com/luminati-io/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.co.kr/) 
+[![Promo](https://github.com/bright-kr/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.co.kr/) 
 
 이 가이드는 동적 페이지네이션, 무한 스크롤, ‘Load More’ 버튼과 같은 복잡한 내비게이션 패턴을 가진 웹사이트를 Selenium 및 브라우저 자동화를 사용하여 スクレイピング하는 방법을 설명합니다.
 
@@ -42,7 +42,7 @@ Python에서 Selenium을 사용하지만, 로직은 Playwright, Puppeteer 또는
 
 “[Oscar Winning Films: AJAX and Javascript](https://www.scrapethissite.com/pages/ajax-javascript/#2014)” スクレイピング 샌드박스를 사용하겠습니다:
 
-![The target page. Note how pagination data is loaded dynamically](https://github.com/luminati-io/complex-navigation-scraping/blob/main/Images/Dynamic-pagniation-example-1536x752.gif)
+![The target page. Note how pagination data is loaded dynamically](https://github.com/bright-kr/complex-navigation-scraping/blob/main/Images/Dynamic-pagniation-example-1536x752.gif)
 
 이 사이트는 오스카 수상 영화 데이터를 연도별로 페이지네이션하여 동적으로 로드합니다.
 
@@ -156,7 +156,7 @@ driver.quit()
 
 이번에는 Scraping Course의 [‘Load More’ example](https://www.scrapingcourse.com/button-click) 페이지를 대상 사이트로 사용하겠습니다:
 
-![The ‘Load More’ target page in action](https://github.com/luminati-io/complex-navigation-scraping/blob/main/Images/Clicking-on-the-load-more-button-1536x752.gif)
+![The ‘Load More’ target page in action](https://github.com/bright-kr/complex-navigation-scraping/blob/main/Images/Clicking-on-the-load-more-button-1536x752.gif)
 
 이 복잡한 내비게이션 スクレイピング 패턴을 처리하려면 다음 단계를 따르십시오:
 
@@ -229,7 +229,7 @@ driver.quit()
 
 무한 스크롤은 사용자 참여를 높이기 위해 소셜 미디어 및 이커머스 플랫폼에서 널리 사용되는 인기 있는 상호작용입니다. 이 경우 대상은 위와 동일한 페이지이되, [‘Load More’ 버튼 대신 무한 스크롤](https://www.scrapingcourse.com/infinite-scrolling)을 사용하는 버전입니다:
 
-![infinite scrolling instead of a 'Load More' button](https://github.com/luminati-io/complex-navigation-scraping/blob/main/Images/Infinite-scrolling-example-1024x501.gif)
+![infinite scrolling instead of a 'Load More' button](https://github.com/bright-kr/complex-navigation-scraping/blob/main/Images/Infinite-scrolling-example-1024x501.gif)
 
 대부분의 브라우저 자동화 도구는 페이지를 위/아래로 스크롤하는 직접적인 메서드를 제공하지 않으며, Selenium도 예외가 아닙니다. 대신 스크롤 동작을 수행하려면 페이지에서 JavaScript 스크립트를 실행해야 합니다.
 
