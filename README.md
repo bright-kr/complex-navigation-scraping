@@ -1,12 +1,12 @@
-# 복잡한 내비게이션이 있는 웹사이트 スクレイピング
+# 복잡한 내비게이션이 있는 웹사이트 스크레이핑
 
 [![Promo](https://github.com/bright-kr/LinkedIn-Scraper/raw/main/Proxies%20and%20scrapers%20GitHub%20bonus%20banner.png)](https://brightdata.co.kr/) 
 
-이 가이드는 동적 페이지네이션, 무한 스크롤, ‘Load More’ 버튼과 같은 복잡한 내비게이션 패턴을 가진 웹사이트를 Selenium 및 브라우저 자동화를 사용하여 スクレイピング하는 방법을 설명합니다.
+이 가이드는 동적 페이지네이션, 무한 스크롤, ‘Load More’ 버튼과 같은 복잡한 내비게이션 패턴을 가진 웹사이트를 Selenium 및 브라우저 자동화를 사용하여 스크레이핑하는 방법을 설명합니다.
 
 - [복잡한 내비게이션으로 간주되는 것은 무엇입니까?](#what-is-considered-complex-navigation)
 - [복잡한 내비게이션 웹사이트를 처리하기 위한 도구](#tools-to-handle-complex-navigation-websites)
-- [일반적인 복잡한 내비게이션 패턴 スクレイピング](#scraping-common-complex-navigation-patterns)
+- [일반적인 복잡한 내비게이션 패턴 스크레이핑](#scraping-common-complex-navigation-patterns)
   - [동적 페이지네이션](#dynamic-pagination)
   - [‘Load More’ 버튼](#load-more-button)
   - [무한 스크롤](#infinite-scrolling)
@@ -14,7 +14,7 @@
 
 ## What Is Considered Complex Navigation?
 
-Webスクレイピング에서 복잡한 내비게이션이란 콘텐츠나 페이지에 쉽게 접근할 수 없는 웹사이트 구조를 의미합니다. 복잡한 내비게이션 시나리오는 종종 동적 요소, 비동기 데이터 로딩 또는 사용자 주도 상호작용을 포함합니다. 이러한 측면은 사용자 경험을 향상시킬 수 있지만, 데이터 추출을 크게 복잡하게 만들기도 합니다. 다음은 매우 일반적인 예시입니다:
+Web스크레이핑에서 복잡한 내비게이션이란 콘텐츠나 페이지에 쉽게 접근할 수 없는 웹사이트 구조를 의미합니다. 복잡한 내비게이션 시나리오는 종종 동적 요소, 비동기 데이터 로딩 또는 사용자 주도 상호작용을 포함합니다. 이러한 측면은 사용자 경험을 향상시킬 수 있지만, 데이터 추출을 크게 복잡하게 만들기도 합니다. 다음은 매우 일반적인 예시입니다:
 
 - **JavaScript-rendered navigation**: JavaScript 프레임워크에 의존하여 브라우저에서 직접 콘텐츠를 생성하는 웹사이트입니다.
 - **Paginated content**: AJAX를 통해 페이지네이션이 동적으로 로드되며 데이터가 여러 페이지에 걸쳐 분산된 사이트입니다.
@@ -40,18 +40,18 @@ Python에서 Selenium을 사용하지만, 로직은 Playwright, Puppeteer 또는
 
 ### Dynamic Pagination
 
-“[Oscar Winning Films: AJAX and Javascript](https://www.scrapethissite.com/pages/ajax-javascript/#2014)” スクレイピング 샌드박스를 사용하겠습니다:
+“[Oscar Winning Films: AJAX and Javascript](https://www.scrapethissite.com/pages/ajax-javascript/#2014)” 스크레이핑 샌드박스를 사용하겠습니다:
 
 ![The target page. Note how pagination data is loaded dynamically](https://github.com/bright-kr/complex-navigation-scraping/blob/main/Images/Dynamic-pagniation-example-1536x752.gif)
 
 이 사이트는 오스카 수상 영화 데이터를 연도별로 페이지네이션하여 동적으로 로드합니다.
 
-이와 같은 페이지를 효과적으로 탐색하고 スクレイピング하려면 다음 단계를 따라야 합니다:
+이와 같은 페이지를 효과적으로 탐색하고 스크레이핑하려면 다음 단계를 따라야 합니다:
 
 1. 새 연도를 클릭하여 데이터 로딩을 트리거합니다(로더 요소가 표시됩니다).
 2. 로더 요소가 사라질 때까지 기다립니다(데이터가 완전히 로드되었음을 의미합니다).
 3. 데이터가 포함된 테이블이 페이지에 제대로 렌더링되었는지 확인합니다.
-4. 데이터가 사용 가능해지면 スクレイピング합니다.
+4. 데이터가 사용 가능해지면 스크레이핑합니다.
 
 아래는 Python에서 Selenium으로 이 로직을 구현하는 예시입니다:
 
@@ -147,8 +147,8 @@ driver.quit()
 이 내비게이션 패턴을 처리하는 단 하나의 최선의 접근법이 항상 존재하는 것은 아니라는 점을 유념하시기 바랍니다. 페이지의 동작에 따라서는 대체 방법이 필요할 수 있습니다. 다음은 몇 가지 예시입니다:
 
 *   `WebDriverWait()`을 예상 조건과 함께 사용하여 특정 HTML 요소가 나타나거나 사라질 때까지 대기합니다.
-*   AJAX リクエスト 트래픽을 모니터링하여 새 콘텐츠가 언제 가져와지는지 감지합니다. 이는 브라우저 로깅을 사용하는 방식일 수 있습니다.
-*   페이지네이션에 의해 트리거되는 API リクエスト를 식별하고, 직접 リクエスト를 보내 프로그래밍 방식으로 데이터를 가져옵니다(예: [`requests` library](https://brightdata.co.kr/blog/web-data/python-requests-guide) 사용).
+*   AJAX 요청 트래픽을 모니터링하여 새 콘텐츠가 언제 가져와지는지 감지합니다. 이는 브라우저 로깅을 사용하는 방식일 수 있습니다.
+*   페이지네이션에 의해 트리거되는 API 요청를 식별하고, 직접 요청를 보내 프로그래밍 방식으로 데이터를 가져옵니다(예: [`requests` library](https://brightdata.co.kr/blog/web-data/python-requests-guide) 사용).
 
 ### ‘Load More’ Button
 
@@ -158,7 +158,7 @@ driver.quit()
 
 ![The ‘Load More’ target page in action](https://github.com/bright-kr/complex-navigation-scraping/blob/main/Images/Clicking-on-the-load-more-button-1536x752.gif)
 
-이 복잡한 내비게이션 スクレイピング 패턴을 처리하려면 다음 단계를 따르십시오:
+이 복잡한 내비게이션 스크레이핑 패턴을 처리하려면 다음 단계를 따르십시오:
 
 1.  ‘Load More’ 버튼을 찾아 클릭합니다.
 2.  새 요소가 페이지에 로드될 때까지 기다립니다.
@@ -241,7 +241,7 @@ driver.quit()
 > **Note**:\
 > 각 스크롤은 새 데이터를 로드하며 페이지의 요소 개수를 증가시킵니다.
 
-그 다음 새로 로드된 콘텐츠를 スクレイピング할 수 있습니다.
+그 다음 새로 로드된 콘텐츠를 스크레이핑할 수 있습니다.
 
 다음은 Selenium에서 무한 스크롤을 사용하는 코드입니다:
 
@@ -326,6 +326,6 @@ driver.quit()
 
 ## Conclusion
 
-복잡한 내비게이션 패턴이 포함되면 Webスクレイピング은 어려울 수 있으며, 기업은 자동화 스크립트를 차단하기 위해 anti-scraping 조치를 적용하여 이를 더욱 어렵게 만들 수 있습니다. Selenium과 같은 브라우저 자동화 도구는 이러한 제한을 우회할 수 없습니다.
+복잡한 내비게이션 패턴이 포함되면 Web스크레이핑은 어려울 수 있으며, 기업은 자동화 스크립트를 차단하기 위해 anti-scraping 조치를 적용하여 이를 더욱 어렵게 만들 수 있습니다. Selenium과 같은 브라우저 자동화 도구는 이러한 제한을 우회할 수 없습니다.
 
-해결책은 Playwright, Puppeteer, Selenium 및 기타 도구와 통합되며 각 リクエスト마다 IP를 자동으로 로ーテーティングプロキシ하는 [Scraping Browser](https://brightdata.co.kr/products/scraping-browser)와 같은 클라우드 기반 브라우저를 사용하는 것입니다. 이는 브라우ザフィンガープリント, リトライ, CAPTCHA 해결 등을 관리할 수 있습니다. 복잡한 사이트를 탐색할 때 차단되는 문제와 작별하십시오!
+해결책은 Playwright, Puppeteer, Selenium 및 기타 도구와 통합되며 각 요청마다 IP를 자동으로 로ーテーティング프록시하는 [Scraping Browser](https://brightdata.co.kr/products/scraping-browser)와 같은 클라우드 기반 브라우저를 사용하는 것입니다. 이는 브라우ザフィンガープリント, 재시도, CAPTCHA 해결 등을 관리할 수 있습니다. 복잡한 사이트를 탐색할 때 차단되는 문제와 작별하십시오!
